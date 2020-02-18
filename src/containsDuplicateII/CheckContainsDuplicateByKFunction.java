@@ -1,22 +1,23 @@
 package containsDuplicateII;
 
 import java.util.HashMap;
+import java.util.Map;
 
 public class CheckContainsDuplicateByKFunction {
 	// First way, using hashmap going through the whole list worst case
 	public boolean containsNearbyDuplicate(int[] nums, int k) {
 		
-		HashMap<Integer, Integer> map = new HashMap<>();
+		Map<Integer, Integer> map = new HashMap<>();
 		
 		for(int i = 0; i < nums.length; i++){
-			int current = nums[i];
-			
-			if(map.containsKey(current) && i - map.get(current) <= k){
+			// If index between the duplicates is greater or equal to k
+			if(map.containsKey(nums[i]) && i - map.get(nums[i]) >= k){
 				return true;
 			} else {
-				map.put(current, i);
+				map.put(nums[i], i);
 			}
 		}
+		
 		return false;
 	}
 	
